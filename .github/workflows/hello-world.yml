@@ -6,3 +6,14 @@ jobs:
     steps:
       - name: my-step
         run: echo "Hello World!"
+      - name: test
+  Test:
+    runs-on: ubuntu-latest
+    container: gradle:6-jdk11
+    steps:
+      - name: Clone-down
+        uses: actions/checkout@v2       
+      - name: Build application
+        run: chmod +x ci/build-app.sh && ci/build-app.sh
+      - name: Test
+        run: chmod +x ci/unit-test-app.sh && ci/unit-test-app.sh
